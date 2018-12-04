@@ -8,7 +8,7 @@ defmodule Scheduler.MixProject do
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package(),
+      package: package()
     ]
   end
 
@@ -26,6 +26,7 @@ defmodule Scheduler.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {Scheduler.Supervisor, []},
       extra_applications: [:logger]
     ]
   end
