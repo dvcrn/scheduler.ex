@@ -9,8 +9,8 @@ defmodule Scheduler do
     config = Application.get_env(:scheduler, :scheduled_calls)
 
     spawn_link(fn ->
-      Enum.each(config, fn {module, interval} ->
-        :timer.apply_interval(:timer.seconds(interval), __MODULE__, :repeat, [module])
+      Enum.each(config, fn {{module, function_name, arity}, interval} ->
+        :timer.apply_interval(:timer.seconds(interval), __MODULE__, :repeat, [:erlang.make_fun(module, function_name, arity)])
       end)
 
       :timer.sleep(:infinity)
