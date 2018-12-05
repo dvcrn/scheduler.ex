@@ -19,13 +19,13 @@ end
 config :scheduler,
   scheduled_calls: [
     # 15 min
-    {MyApp, :crawl_something, 0}, 900},
+    {{MyApp, :crawl_something, 0}, 900},
 
     # 1h
-    {MyApp, :cleanup_database, 0}, 3600},
+    {{MyApp, :cleanup_database, 0}, 3600},
 
     # 6h
-    {MyApp.Stats, :send, 0}, 21600},
+    {{MyApp.Stats, :send, 0}, 21600},
   ]
 
 ```
